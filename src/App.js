@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { connect } from 'react-redux';
+import moment from 'moment';
+import { fetchWarriors } from './redux/warriors/actions';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
 import MyList from './pages/MyList/MyList';
@@ -8,7 +11,15 @@ import WarriorShow from './pages/WarriorShow/WarriorShow';
 
 import './App.scss';
 
-const App = () => {
+const App = ({ fetchWarriors, localStorage }) => {
+  useEffect(() => {
+    const currentDate = moment().format();
+    const { updateDate } = localStorage;
+    if (!updateDate || currentDate >= updateDate) {
+      fetchWarriors();
+    }
+  });
+
   return (
     <div className="App">
       <Router>
@@ -32,4 +43,6 @@ const App = () => {
   );
 };
 
-export default App;
+export default connect(({ localStorage }) => ({ localStorage }), {
+  fetchWarriors,
+})(App);
