@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: #00000050;
+  padding: $space-large;
+
+  &__navigation {
+    max-width: $container-width;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+
+    &--left {
+      display: flex;
+    }
+    &--right {
+      display: flex;
+    }
+  }
+  &__link {
+    color: $color-text-white;
+    padding: 0 $space-small;
+  }
+}

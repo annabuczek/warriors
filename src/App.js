@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Header from './components/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
 import MyList from './pages/MyList/MyList';
 import WarriorCreate from './pages/WarriorCreate/WarriorCreate';
@@ -12,6 +13,7 @@ const App = () => {
     <div className="App">
       <Router>
         <div>
+          <Header />
           <Route path="/" exact component={HomePage} />
           <Route path="/mylist" exact component={MyList} />
           <Route
