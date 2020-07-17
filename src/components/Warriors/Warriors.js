@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from '@brainhubeu/react-carousel';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   addWarriorToMyList,
   removeWarriorFromMyList,
@@ -55,9 +56,12 @@ const Warriors = ({
                     </div>
                   </div>
                   <div className="warrior__actions">
-                    <button className="warrior__button">
+                    <Link
+                      to={`/warriors/show/${warrior.id}`}
+                      className="warrior__button"
+                    >
                       Wyświetl szczegóły
-                    </button>
+                    </Link>
                     <button
                       className="warrior__button"
                       onClick={() => toggleWarriorOnMyList(warrior)}
