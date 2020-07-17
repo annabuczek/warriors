@@ -1,11 +1,12 @@
 @import '../../styles/variables';
 
 .homepage {
+  background-color: $color-background;
+
   &__banner {
     width: 100vw;
     height: 100vh;
     background-image: url('../../assets/homepage-background.jpg');
-    background-color: $color-background;
     background-position: center center;
     background-size: cover;
     background-attachment: fixed;

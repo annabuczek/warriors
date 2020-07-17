@@ -1,0 +1,37 @@
+@import '../../styles/variables';
+
+.warrior {
+  padding: 0 $space-xlarge;
+
+  &__name {
+    color: $color-secondary;
+    text-align: center;
+  }
+
+  &__content {
+    display: flex;
+
+    &--right {
+      padding: $space-small;
+    }
+  }
+
+  &__superpower-title {
+    color: $color-text-white;
+  }
+
+  &__superpower-content {
+    color: $color-primary;
+  }
+
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    padding: $space-small 0;
+  }
+
+  &__button {
+    padding: $space-medium;
+    margin: $space-small 0;
+  }
+}
