@@ -50,10 +50,13 @@
   }
 
   &__button {
+    width: 100%;
     padding: $space-medium;
     margin: $space-small 0;
-    display: block;
-    width: 100%;
+    background: white;
+    font-size: $font-size-regular;
+    color: #000;
+    text-align: center;
   }
 }
 
