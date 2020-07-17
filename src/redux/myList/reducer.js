@@ -11,7 +11,7 @@ export default (state = initialState, action) => {
         [`${action.warrior.id}`]: action.warrior,
       };
     case actionTypes.REMOVE_WARRIOR_FROM_MY_LIST:
-      return _.omit(state.data, action.warrior.id);
+      return _.omit(state, action.warrior.id);
     default:
       return state;
   }
