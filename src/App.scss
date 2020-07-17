@@ -1,3 +1,5 @@
+@import './styles/variables';
+
 *,
 *::before,
 *::after {
@@ -11,6 +13,7 @@ html {
 body {
   margin: 0;
   font-size: 1.6rem;
+  background-color: $color-background;
 }
 
 a {

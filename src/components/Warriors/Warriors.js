@@ -8,6 +8,7 @@ import {
 } from '../../redux/myList/actions';
 import '@brainhubeu/react-carousel/lib/style.css';
 import './Warriors.scss';
+import '../../styles/shared/Warrior.scss';
 
 const Warriors = ({
   warriors,
