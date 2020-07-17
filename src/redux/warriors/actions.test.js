@@ -10,6 +10,7 @@ import {
   fetchWarriorsRequested,
   fetchWarriorsSucceeded,
   fetchWarriorsFailed,
+  removeWarrior,
 } from './actions';
 import warriorsApiMock from '../../testSupport/mocks/warriorsApiMock.json';
 import { setLocalStorageUpdateDate } from '../localStorage/actions';
@@ -27,88 +28,105 @@ describe('warriors actions', () => {
       expect(fetchWarriorsRequested()).toEqual(expectedAction);
     });
   });
-});
 
-describe('fetchWarriorsSucceeded', () => {
-  it('creates FETCH_WARRIORS_SUCCEEDED action', () => {
-    const currentWarriors = {
-      '1': {
-        id: 1,
-        name: 'Wojownik Krzyś',
-        description:
-          'Aenean eu pretium dui, sit amet posuere tortor.',
-        skill: 'Je pączki na czas',
-      },
-    };
+  describe('fetchWarriorsSucceeded', () => {
+    it('creates FETCH_WARRIORS_SUCCEEDED action', () => {
+      const currentWarriors = {
+        '1': {
+          id: 1,
+          name: 'Wojownik Krzyś',
+          description:
+            'Aenean eu pretium dui, sit amet posuere tortor.',
+          skill: 'Je pączki na czas',
+        },
+      };
 
-    const fetchedWarriors = warriorsApiMock.warriors;
+      const fetchedWarriors = warriorsApiMock.warriors;
 
-    const expectedAction = {
-      type: actionTypes.FETCH_WARRIORS_SUCCEEDED,
-      data: {
-        ...currentWarriors,
-        ..._.mapKeys(fetchedWarriors, 'id'),
-      },
-    };
+      const expectedAction = {
+        type: actionTypes.FETCH_WARRIORS_SUCCEEDED,
+        data: {
+          ...currentWarriors,
+          ..._.mapKeys(fetchedWarriors, 'id'),
+        },
+      };
 
-    expect(
-      fetchWarriorsSucceeded(
-        currentWarriors,
-        warriorsApiMock.warriors,
-      ),
-    ).toEqual(expectedAction);
-  });
-});
-
-describe('fetchWarriorsFailed', () => {
-  it('creates FETCH_WARRIORS_FAILES action', () => {
-    const expectedAction = {
-      type: actionTypes.FETCH_WARRIORS_FAILED,
-      error: 'Request failed with status code 404',
-    };
-
-    expect(
-      fetchWarriorsFailed('Request failed with status code 404'),
-    ).toEqual(expectedAction);
-  });
-});
-
-describe('fetchWarriors', () => {
-  it('creates actions when fetch succeeded', () => {
-    mockAdapter
-      .onGet(
-        'https://run.mocky.io/v3/9fbe35dc-2333-454d-a3a3-2951ef978db1/',
-      )
-      .reply(200, warriorsApiMock);
-
-    const expectedActions = [
-      fetchWarriorsRequested(),
-      fetchWarriorsSucceeded({}, warriorsApiMock.warriors),
-      setLocalStorageUpdateDate(moment().add(3, 'days').format()),
-    ];
-
-    const store = mockStore({ warriors: {} });
-    return store.dispatch(fetchWarriors()).then(() => {
-      expect(store.getActions()).toEqual(expectedActions);
+      expect(
+        fetchWarriorsSucceeded(
+          currentWarriors,
+          warriorsApiMock.warriors,
+        ),
+      ).toEqual(expectedAction);
     });
   });
 
-  it('creates actions when fetch failed', () => {
-    mockAdapter
-      .onGet(
-        'https://run.mocky.io/v3/9fbe35dc-2333-454d-a3a3-2951ef978db1/',
-      )
-      .reply(404, {
-        message: 'Request failed with status code 404',
+  describe('fetchWarriorsFailed', () => {
+    it('creates FETCH_WARRIORS_FAILES action', () => {
+      const expectedAction = {
+        type: actionTypes.FETCH_WARRIORS_FAILED,
+        error: 'Request failed with status code 404',
+      };
+
+      expect(
+        fetchWarriorsFailed('Request failed with status code 404'),
+      ).toEqual(expectedAction);
+    });
+  });
+
+  describe('fetchWarriors', () => {
+    it('creates actions when fetch succeeded', () => {
+      mockAdapter
+        .onGet(
+          'https://run.mocky.io/v3/9fbe35dc-2333-454d-a3a3-2951ef978db1/',
+        )
+        .reply(200, warriorsApiMock);
+
+      const expectedActions = [
+        fetchWarriorsRequested(),
+        fetchWarriorsSucceeded({}, warriorsApiMock.warriors),
+        setLocalStorageUpdateDate(moment().add(3, 'days').format()),
+      ];
+
+      const store = mockStore({ warriors: {} });
+      return store.dispatch(fetchWarriors()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
       });
+    });
 
-    const expectedActions = [
-      fetchWarriorsRequested(),
-      fetchWarriorsFailed('Request failed with status code 404'),
-    ];
+    it('creates actions when fetch failed', () => {
+      mockAdapter
+        .onGet(
+          'https://run.mocky.io/v3/9fbe35dc-2333-454d-a3a3-2951ef978db1/',
+        )
+        .reply(404, {
+          message: 'Request failed with status code 404',
+        });
 
-    const store = mockStore({ warriors: {} });
-    return store.dispatch(fetchWarriors()).then(() => {
+      const expectedActions = [
+        fetchWarriorsRequested(),
+        fetchWarriorsFailed('Request failed with status code 404'),
+      ];
+
+      const store = mockStore({ warriors: {} });
+      return store.dispatch(fetchWarriors()).then(() => {
+        expect(store.getActions()).toEqual(expectedActions);
+      });
+    });
+  });
+
+  describe('removeWarrior', () => {
+    it('creates REMOVE_WARRIOR action', () => {
+      const warrior = { id: 1, name: 'Wojowniczka Ania' };
+      const expectedActions = [
+        {
+          type: actionTypes.REMOVE_WARRIOR,
+          warrior,
+        },
+      ];
+
+      const store = mockStore({ warriors: { 1: warrior } });
+      store.dispatch(removeWarrior(warrior));
+
       expect(store.getActions()).toEqual(expectedActions);
     });
   });

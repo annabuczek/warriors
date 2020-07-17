@@ -4,6 +4,7 @@ import {
   fetchWarriorsFailed,
   fetchWarriorsSucceeded,
 } from './actions';
+import actionTypes from '../actionTypes';
 
 describe('warriors reducer', () => {
   const initialState = { fetching: false, error: '', data: {} };
@@ -52,6 +53,41 @@ describe('warriors reducer', () => {
       fetching: false,
       error: 'Request failed with status code 404',
       data: {},
+    });
+  });
+
+  it('removes warrior', () => {
+    const state = {
+      fetching: false,
+      error: '',
+      data: {
+        1: {
+          id: '1',
+          name: 'Wojowniczka Ewa',
+        },
+        2: {
+          id: '2',
+          name: 'Wojownik Sebastian',
+        },
+      },
+    };
+
+    const warrior = { id: '2', name: 'Wojownik Sebastian' };
+
+    const removeWarriorAction = {
+      type: actionTypes.REMOVE_WARRIOR,
+      warrior,
+    };
+
+    expect(reducer(state, removeWarriorAction)).toEqual({
+      fetching: false,
+      error: '',
+      data: {
+        1: {
+          id: '1',
+          name: 'Wojowniczka Ewa',
+        },
+      },
     });
   });
 });
