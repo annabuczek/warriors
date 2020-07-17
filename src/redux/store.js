@@ -16,5 +16,6 @@ store.subscribe(() => {
   saveState({
     warriors: { data: store.getState().warriors.data },
     localStorage: store.getState().localStorage,
+    myList: store.getState().myList,
   });
 });

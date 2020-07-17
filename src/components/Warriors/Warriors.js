@@ -1,10 +1,26 @@
 import React from 'react';
 import Carousel from '@brainhubeu/react-carousel';
 import { connect } from 'react-redux';
+import {
+  addWarriorToMyList,
+  removeWarriorFromMyList,
+} from '../../redux/myList/actions';
 import '@brainhubeu/react-carousel/lib/style.css';
 import './Warriors.scss';
 
-const Warriors = ({ warriors }) => {
+const Warriors = ({
+  warriors,
+  addWarriorToMyList,
+  removeWarriorFromMyList,
+  myList,
+}) => {
+  const toggleWarriorOnMyList = (warrior) => {
+    if (warrior.id in myList) {
+      removeWarriorFromMyList(warrior);
+    } else {
+      addWarriorToMyList(warrior);
+    }
+  };
   return (
     <section className="warriors">
       <h2 className="warriors__title">Poznaj Wojowników</h2>
@@ -42,8 +58,13 @@ const Warriors = ({ warriors }) => {
                     <button className="warrior__button">
                       Wyświetl szczegóły
                     </button>
-                    <button className="warrior__button">
-                      Dodaj/Usuń z listy
+                    <button
+                      className="warrior__button"
+                      onClick={() => toggleWarriorOnMyList(warrior)}
+                    >
+                      {warrior.id in myList
+                        ? `Usuń z mojej listy`
+                        : 'Dodaj do mojej listy'}
                     </button>
                   </div>
                 </div>
@@ -56,8 +77,11 @@ const Warriors = ({ warriors }) => {
   );
 };
 
-const mapStateToProps = ({ warriors }) => {
-  return { warriors: Object.values(warriors.data) };
+const mapStateToProps = ({ warriors, myList }) => {
+  return { warriors: Object.values(warriors.data), myList };
 };
 
-export default connect(mapStateToProps)(Warriors);
+export default connect(mapStateToProps, {
+  addWarriorToMyList,
+  removeWarriorFromMyList,
+})(Warriors);
