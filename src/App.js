@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { fetchWarriors } from './redux/warriors/actions';
+import history from './history';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
 import MyList from './pages/MyList/MyList';
@@ -22,7 +23,7 @@ const App = ({ fetchWarriors, localStorage }) => {
 
   return (
     <div className="App">
-      <Router>
+      <Router history={history}>
         <div>
           <Header />
           <Route path="/" exact component={HomePage} />
