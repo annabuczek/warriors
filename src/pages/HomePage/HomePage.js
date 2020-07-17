@@ -1,12 +1,12 @@
 import React from 'react';
-import WarriorsCarousel from '../../components/WarriorsCarousel/WarriorsCarousel';
+import Warriors from '../../components/Warriors/Warriors';
 import './HomePage.scss';
 
 const HomePage = () => {
   return (
     <div className="homepage">
       <section className="homepage__banner"></section>
-      <WarriorsCarousel />
+      <Warriors />
     </div>
   );
 };
