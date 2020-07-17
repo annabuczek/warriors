@@ -1,5 +1,10 @@
 @import '../../styles/variables';
 
 .warrior-show {
+  padding-top: 6rem;
   display: flex;
+
+  &__description {
+    color: $color-text-white;
+  }
 }
