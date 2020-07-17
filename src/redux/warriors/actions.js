@@ -45,3 +45,10 @@ export const fetchWarriors = () => async (dispatch, getState) => {
     dispatch(fetchWarriorsFailed(error.message));
   }
 };
+
+export const removeWarrior = (warrior) => {
+  return {
+    type: actionTypes.REMOVE_WARRIOR,
+    warrior,
+  };
+};

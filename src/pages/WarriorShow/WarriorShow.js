@@ -4,6 +4,7 @@ import {
   addWarriorToMyList,
   removeWarriorFromMyList,
 } from '../../redux/myList/actions';
+import { removeWarrior } from '../../redux/warriors/actions';
 import './WarriorShow.scss';
 import '../../styles/shared/Warrior.scss';
 
@@ -13,6 +14,7 @@ const WarriorShow = ({
   myList,
   addWarriorToMyList,
   removeWarriorFromMyList,
+  removeWarrior,
 }) => {
   const warrior = warriors.data[match.params.id];
 
@@ -56,7 +58,12 @@ const WarriorShow = ({
                   ? `Usuń z mojej listy`
                   : 'Dodaj do mojej listy'}
               </button>
-              <button className="warrior__button">Rezerwa</button>
+              <button
+                className="warrior__button"
+                onClick={() => removeWarrior(warrior)}
+              >
+                Rezerwa
+              </button>
             </div>
           </div>
         </div>
@@ -70,5 +77,5 @@ export default connect(
     warriors,
     myList,
   }),
-  { addWarriorToMyList, removeWarriorFromMyList },
+  { addWarriorToMyList, removeWarriorFromMyList, removeWarrior },
 )(WarriorShow);

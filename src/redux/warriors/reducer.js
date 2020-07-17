@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import actionTypes from '../actionTypes';
 
 const initialState = {
@@ -24,6 +25,11 @@ export default (state = initialState, action) => {
         ...state,
         error: action.error,
         fetching: false,
+      };
+    case actionTypes.REMOVE_WARRIOR:
+      return {
+        ...state,
+        data: _.omit(state.data, action.warrior.id),
       };
     default:
       return state;
