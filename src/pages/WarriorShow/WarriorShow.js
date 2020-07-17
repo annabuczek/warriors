@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import RemoveWarriorPopup from '../../components/RemoveWarriorPopup/RemoveWarriorPopup';
 import {
   addWarriorToMyList,
   removeWarriorFromMyList,
@@ -58,12 +59,9 @@ const WarriorShow = ({
                   ? `Usuń z mojej listy`
                   : 'Dodaj do mojej listy'}
               </button>
-              <button
-                className="warrior__button"
-                onClick={() => removeWarrior(warrior)}
-              >
-                Rezerwa
-              </button>
+              <RemoveWarriorPopup
+                removeWarrior={() => removeWarrior(warrior)}
+              />
             </div>
           </div>
         </div>
