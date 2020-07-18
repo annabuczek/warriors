@@ -41,9 +41,7 @@ const Warriors = ({
                 <div className="warrior__content--left">
                   <img
                     className="warrior__image"
-                    src={
-                      'https://source.unsplash.com/random/400x300?jedi'
-                    }
+                    src={`https://source.unsplash.com/random/400x300?jedi?sig=${warrior.id}`}
                     alt={`Zdjęcie ${warrior.name}`}
                   ></img>
                 </div>
