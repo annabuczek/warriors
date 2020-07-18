@@ -1,9 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { addWarrior } from '../../redux/warriors/actions';
 import skills from '../../helpers/skills';
 import './WarriorCreate.scss';
 
-const WarriorCreate = ({ submitting, handleSubmit }) => {
+const WarriorCreate = ({
+  submitting,
+  handleSubmit,
+  addWarrior,
+  warriors,
+}) => {
+  const generateNewWarriorId = () => {
+    const warriorsKeys = Object.keys(warriors.data);
+    const warriorsLastId = warriorsKeys[warriorsKeys.length - 1];
+    return parseInt(warriorsLastId) + 1;
+  };
+
+  const onSubmit = (formValues) => {
+    const warrior = { id: generateNewWarriorId(), ...formValues };
+    addWarrior(warrior);
+  };
+
   const renderInput = ({
     input,
     label,
@@ -61,10 +79,6 @@ const WarriorCreate = ({ submitting, handleSubmit }) => {
     );
   };
 
-  const onSubmit = (formValues) => {
-    console.log(formValues);
-  };
-
   return (
     <div className="warrior-create">
       <h1 className="warrior-create__title">Dodaj Wojownika</h1>
@@ -101,7 +115,11 @@ const WarriorCreate = ({ submitting, handleSubmit }) => {
   );
 };
 
-export default reduxForm({
+const form = reduxForm({
   form: 'createWarriorForm',
   initialValues: { skill: skills['1'].name },
 })(WarriorCreate);
+
+export default connect(({ warriors }) => ({ warriors }), {
+  addWarrior,
+})(form);

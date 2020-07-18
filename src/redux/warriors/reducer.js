@@ -31,6 +31,14 @@ export default (state = initialState, action) => {
         ...state,
         data: _.omit(state.data, action.warrior.id),
       };
+    case actionTypes.ADD_WARRIOR:
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          [`${action.warrior.id}`]: action.warrior,
+        },
+      };
     default:
       return state;
   }

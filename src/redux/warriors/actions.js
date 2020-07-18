@@ -54,3 +54,11 @@ export const removeWarrior = (warrior) => (dispatch) => {
   });
   history.push('/');
 };
+
+export const addWarrior = (warrior) => (dispatch) => {
+  dispatch({
+    type: actionTypes.ADD_WARRIOR,
+    warrior,
+  });
+  history.push('/');
+};
