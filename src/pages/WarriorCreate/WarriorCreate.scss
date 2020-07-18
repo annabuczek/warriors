@@ -10,3 +10,41 @@
     color: $color-text-white;
   }
 }
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  &__field {
+    padding: $space-small;
+  }
+
+  &__label {
+    display: block;
+    color: $color-primary;
+    padding: $space-small;
+  }
+
+  &__input,
+  &__select,
+  &__textarea {
+    width: 100%;
+    padding: $space-small $space-xlarge $space-small $space-small;
+    font-size: $font-size-regular;
+    border-radius: 0;
+    border: none;
+    text-overflow: ellipsis;
+  }
+
+  &__option {
+    white-space: pre-wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__submit {
+    margin: $space-xlarge $space-small;
+    padding: $space-small;
+    font-size: $font-size-regular;
+  }
+}

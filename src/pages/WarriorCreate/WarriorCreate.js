@@ -8,6 +8,8 @@ const WarriorCreate = ({ submitting, handleSubmit }) => {
     input,
     label,
     type,
+    name,
+    isTextarea,
     meta: { error, touched },
   }) => {
     return (
@@ -16,13 +18,45 @@ const WarriorCreate = ({ submitting, handleSubmit }) => {
           touched && error ? 'form__field--error' : ''
         }`}
       >
-        <label>
+        <label htmlFor={name} className="form__label">
           {label}
-          <input {...input} type={type} />
-          {touched && error && (
-            <div className="form__error">{error}</div>
-          )}
         </label>
+        {isTextarea ? (
+          <textarea
+            {...input}
+            type={type}
+            className="form__textarea"
+          />
+        ) : (
+          <input {...input} type={type} className="form__input" />
+        )}
+        {touched && error && (
+          <div className="form__error">{error}</div>
+        )}
+      </div>
+    );
+  };
+
+  const renderSelect = ({ input, label, type, name, options }) => {
+    return (
+      <div className="form__field">
+        <label htmlFor={name} className="form__label">
+          {label}
+        </label>
+        <select {...input} type={type} className="form__select">
+          {options.map((option) => {
+            return (
+              <option
+                key={option.id}
+                value={option.name}
+                className="form__option"
+              >
+                {option.name}
+              </option>
+            );
+          })}
+          ;
+        </select>
       </div>
     );
   };
@@ -34,30 +68,26 @@ const WarriorCreate = ({ submitting, handleSubmit }) => {
   return (
     <div className="warrior-create">
       <h1 className="warrior-create__title">Dodaj Wojownika</h1>
-      <form
-        className="warrior-create__form"
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className="form" onSubmit={handleSubmit(onSubmit)}>
         <Field
-          name="firstName"
+          name="name"
           component={renderInput}
           type="text"
           label="Imię"
         />
-        <Field name="skill" component="select">
-          {Object.values(skills).map((skill) => {
-            return (
-              <option key={skill.id} value={skill.name}>
-                {skill.name}
-              </option>
-            );
-          })}
-        </Field>
+        <Field
+          name="firstName"
+          component={renderSelect}
+          type="select"
+          label="Superpower"
+          options={Object.values(skills)}
+        />
         <Field
           name="description"
           component={renderInput}
-          type="text"
+          type="area"
           label="Opis"
+          isTextarea
         />
         <button
           type="submit"
