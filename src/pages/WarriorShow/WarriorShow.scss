@@ -2,9 +2,13 @@
 
 .warrior-show {
   padding-top: 6rem;
+  width: $container-width;
+  max-width: 100%;
   display: flex;
 
   &__description {
     color: $color-text-white;
+    text-align: center;
+    padding: $space-medium 0;
   }
 }

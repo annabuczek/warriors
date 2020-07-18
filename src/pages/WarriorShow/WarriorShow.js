@@ -32,11 +32,13 @@ const WarriorShow = ({
         <h3 className="warrior__name">{warrior.name}</h3>
         <div className="warrior__content">
           <div className="warrior__content--left">
-            <img
-              className="warrior__image"
-              src={`https://source.unsplash.com/random/400x300?jedi?sig=${warrior.id}`}
-              alt={`Zdjęcie ${warrior.name}`}
-            ></img>
+            <div className="warrior__image-wrapper">
+              <img
+                className="warrior__image"
+                src={`https://source.unsplash.com/random/400x300?jedi?sig=${warrior.id}`}
+                alt={`Zdjęcie ${warrior.name}`}
+              ></img>
+            </div>
           </div>
           <div className="warrior__content--right">
             <div className="warrior__superpower">
@@ -52,7 +54,11 @@ const WarriorShow = ({
             </div>
             <div className="warrior__actions">
               <button
-                className="warrior__button"
+                className={`warrior__button ${
+                  warrior.id in myList
+                    ? 'warrior__button--remove'
+                    : 'warrior__button--add'
+                }`}
                 onClick={() => toggleWarriorOnMyList(warrior)}
               >
                 {warrior.id in myList
