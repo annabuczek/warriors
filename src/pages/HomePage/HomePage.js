@@ -5,7 +5,22 @@ import './HomePage.scss';
 const HomePage = () => {
   return (
     <div className="homepage">
-      <section className="homepage__banner"></section>
+      <section className="homepage__banner">
+        <div className="homepage__content">
+          <h1 className="homepage__title">
+            Witaj w świecie dzielnych wojowników!
+          </h1>
+          <h3 className="homepage__subtitle">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent fringilla libero rhoncus nisi vulputate volutpat.
+            Fusce interdum lobortis vulputate. Aliquam at libero eget
+            purus pellentesque commodo quis at arcu.
+          </h3>
+          <button className="homepage__button">
+            Poznaj ich blizej
+          </button>
+        </div>
+      </section>
       <Warriors />
     </div>
   );
