@@ -11,6 +11,7 @@ import {
   fetchWarriorsSucceeded,
   fetchWarriorsFailed,
   removeWarrior,
+  addWarrior,
 } from './actions';
 import warriorsApiMock from '../../testSupport/mocks/warriorsApiMock.json';
 import { setLocalStorageUpdateDate } from '../localStorage/actions';
@@ -126,6 +127,23 @@ describe('warriors actions', () => {
 
       const store = mockStore({ warriors: { 1: warrior } });
       store.dispatch(removeWarrior(warrior));
+
+      expect(store.getActions()).toEqual(expectedActions);
+    });
+  });
+
+  describe('addWarrior', () => {
+    it('creates ADD_WARRIOR action', () => {
+      const warrior = { id: 2, name: 'Wojownik Krzysiek' };
+      const expectedActions = [
+        {
+          type: actionTypes.ADD_WARRIOR,
+          warrior,
+        },
+      ];
+
+      const store = mockStore({ warriors: {} });
+      store.dispatch(addWarrior(warrior));
 
       expect(store.getActions()).toEqual(expectedActions);
     });

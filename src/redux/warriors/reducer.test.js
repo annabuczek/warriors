@@ -90,4 +90,39 @@ describe('warriors reducer', () => {
       },
     });
   });
+
+  it('adds warrior', () => {
+    const state = {
+      fetching: false,
+      error: '',
+      data: {
+        1: {
+          id: '1',
+          name: 'Wojowniczka Ewa',
+        },
+      },
+    };
+
+    const warrior = { id: '2', name: 'Wojownik Sebastian' };
+
+    const addWarriorAction = {
+      type: actionTypes.ADD_WARRIOR,
+      warrior,
+    };
+
+    expect(reducer(state, addWarriorAction)).toEqual({
+      fetching: false,
+      error: '',
+      data: {
+        1: {
+          id: '1',
+          name: 'Wojowniczka Ewa',
+        },
+        2: {
+          id: '2',
+          name: 'Wojownik Sebastian',
+        },
+      },
+    });
+  });
 });
