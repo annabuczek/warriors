@@ -20,10 +20,10 @@
   }
   &__button {
     &--decline {
-      @include button($color-button-positive);
+      @include button($color-positive);
     }
     &--confirm {
-      @include button($color-button-negative);
+      @include button($color-negative);
       @media (max-width: $bp-600) {
         margin-bottom: $space-small;
       }

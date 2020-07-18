@@ -1,13 +1,17 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .warrior-create {
   display: flex;
-  padding-top: 6rem;
   flex-direction: column;
   align-items: center;
+  width: $container-width;
+  max-width: 100%;
+  padding-top: 6rem;
+  margin: 0 auto;
 
   &__title {
-    color: $color-text-white;
+    @include pageTitle;
   }
 }
 
@@ -17,12 +21,17 @@
 
   &__field {
     padding: $space-small;
+    @media (max-width: $bp-600) {
+      padding: 0 $space-small;
+    }
   }
 
   &__label {
     display: block;
     color: $color-primary;
-    padding: $space-small;
+    padding: $space-small 0;
+    font-size: $font-size-h3;
+    font-family: $font-family-decorative;
   }
 
   &__input,
@@ -36,7 +45,7 @@
     text-overflow: ellipsis;
 
     &--error {
-      border: 0.3rem solid $color-secondary;
+      border: 0.3rem solid $color-negative;
     }
   }
 
@@ -47,13 +56,12 @@
   }
 
   &__submit {
+    @include button($color-secondary);
     margin: $space-xlarge $space-small;
-    padding: $space-small;
-    font-size: $font-size-regular;
   }
 
   &__error {
-    padding: $space-small;
-    color: $color-secondary;
+    padding: $space-small 0;
+    color: $color-negative;
   }
 }

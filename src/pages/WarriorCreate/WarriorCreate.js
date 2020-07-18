@@ -97,7 +97,7 @@ class WarriorCreate extends React.Component {
             name="firstName"
             component={this.renderSelect}
             type="select"
-            label="Superpower"
+            label="Super Power"
             options={Object.values(skills)}
           />
           <Field

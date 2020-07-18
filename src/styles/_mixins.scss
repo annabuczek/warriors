@@ -20,6 +20,9 @@
   font-size: $font-size-h2;
   padding: 0 $space-xlarge;
   text-align: center;
+  @media (max-width: $bp-600) {
+    font-size: $font-size-h2-phone;
+  }
 }
 
 @mixin warriorName {
