@@ -3,24 +3,79 @@
 .header {
   position: fixed;
   width: 100%;
-  background-color: #00000050;
-  padding: $space-large;
+  background-color: #00000070;
+  padding: $space-medium;
+  z-index: 4;
 
-  &__navigation {
+  &__navbar {
     max-width: $container-width;
     margin: 0 auto;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+  }
 
-    &--left {
-      display: flex;
-    }
-    &--right {
-      display: flex;
+  &__links {
+    display: flex;
+    @media (max-width: $bp-600) {
+      flex-direction: column;
     }
   }
+
   &__link {
     color: $color-text-white;
+    font-size: $font-size-regular;
     padding: 0 $space-small;
+    font-weight: 700;
+    transition: all 0.3s;
+
+    &:hover {
+      color: $color-secondary;
+    }
+
+    &--mobile {
+      margin-bottom: $space-large;
+    }
+
+    &--add {
+      color: $color-positive;
+
+      &:hover {
+        color: darken($color-positive, 20%);
+      }
+    }
+  }
+}
+
+.nav-mobile {
+  display: flex;
+  @media (min-width: $bp-601) {
+    display: none;
+  }
+
+  &__drawer {
+    position: fixed;
+    width: 100vw;
+    top: -10rem;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+    background-color: #00000070;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    padding: 0 $space-medium $space-large $space-medium;
+
+    &--open {
+      top: 5.72rem;
+      pointer-events: unset;
+    }
+  }
+}
+
+.nav-desktop {
+  display: flex;
+  @media (max-width: $bp-600) {
+    display: none;
   }
 }
