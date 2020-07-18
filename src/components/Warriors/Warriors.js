@@ -36,7 +36,9 @@ const Warriors = ({
         {warriors.map((warrior) => {
           return (
             <div className="warrior" key={warrior.id}>
-              <h3 className="warrior__name">{warrior.name}</h3>
+              <h3 className="warrior__name" id="warrior">
+                {warrior.name}
+              </h3>
               <div className="warrior__content">
                 <div className="warrior__content--left">
                   <img

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-scroll';
 import Warriors from '../../components/Warriors/Warriors';
 import './HomePage.scss';
 
@@ -16,9 +17,16 @@ const HomePage = () => {
             Fusce interdum lobortis vulputate. Aliquam at libero eget
             purus pellentesque commodo quis at arcu.
           </h3>
-          <button className="homepage__button">
+          <Link
+            className="homepage__button"
+            to="warrior"
+            spy={true}
+            smooth={true}
+            offset={-80}
+            duration={500}
+          >
             Poznaj ich blizej
-          </button>
+          </Link>
         </div>
       </section>
       <Warriors />
