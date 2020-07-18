@@ -5,24 +5,22 @@ import { addWarrior } from '../../redux/warriors/actions';
 import skills from '../../helpers/skills';
 import './WarriorCreate.scss';
 
-const WarriorCreate = ({
-  submitting,
-  handleSubmit,
-  addWarrior,
-  warriors,
-}) => {
-  const generateNewWarriorId = () => {
-    const warriorsKeys = Object.keys(warriors.data);
+class WarriorCreate extends React.Component {
+  generateNewWarriorId = () => {
+    const warriorsKeys = Object.keys(this.props.warriors.data);
     const warriorsLastId = warriorsKeys[warriorsKeys.length - 1];
     return parseInt(warriorsLastId) + 1;
   };
 
-  const onSubmit = (formValues) => {
-    const warrior = { id: generateNewWarriorId(), ...formValues };
-    addWarrior(warrior);
+  onSubmit = (formValues) => {
+    const warrior = {
+      id: this.generateNewWarriorId(),
+      ...formValues,
+    };
+    this.props.addWarrior(warrior);
   };
 
-  const renderInput = ({
+  renderInput = ({
     input,
     label,
     type,
@@ -59,7 +57,7 @@ const WarriorCreate = ({
     );
   };
 
-  const renderSelect = ({ input, label, type, name, options }) => {
+  renderSelect = ({ input, label, type, name, options }) => {
     return (
       <div className="form__field">
         <label htmlFor={name} className="form__label">
@@ -83,41 +81,44 @@ const WarriorCreate = ({
     );
   };
 
-  return (
-    <div className="warrior-create">
-      <h1 className="warrior-create__title">Dodaj Wojownika</h1>
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <Field
-          name="name"
-          component={renderInput}
-          type="text"
-          label="Imię"
-        />
-        <Field
-          name="firstName"
-          component={renderSelect}
-          type="select"
-          label="Superpower"
-          options={Object.values(skills)}
-        />
-        <Field
-          name="description"
-          component={renderInput}
-          type="area"
-          label="Opis"
-          isTextarea
-        />
-        <button
-          type="submit"
-          disabled={submitting}
-          className="form__submit"
-        >
-          Stwórz Wojownika
-        </button>
-      </form>
-    </div>
-  );
-};
+  render() {
+    const { handleSubmit, submitting } = this.props;
+    return (
+      <div className="warrior-create">
+        <h1 className="warrior-create__title">Dodaj Wojownika</h1>
+        <form className="form" onSubmit={handleSubmit(this.onSubmit)}>
+          <Field
+            name="name"
+            component={this.renderInput}
+            type="text"
+            label="Imię"
+          />
+          <Field
+            name="firstName"
+            component={this.renderSelect}
+            type="select"
+            label="Superpower"
+            options={Object.values(skills)}
+          />
+          <Field
+            name="description"
+            component={this.renderInput}
+            type="area"
+            label="Opis"
+            isTextarea
+          />
+          <button
+            type="submit"
+            disabled={submitting}
+            className="form__submit"
+          >
+            Stwórz Wojownika
+          </button>
+        </form>
+      </div>
+    );
+  }
+}
 
 const validate = (formValues) => {
   const errors = {};
