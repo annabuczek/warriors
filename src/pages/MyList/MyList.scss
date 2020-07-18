@@ -1,5 +1,11 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .my-list {
-  display: flex;
+  @include container;
+  flex-direction: column;
+
+  &__title {
+    @include pageTitle;
+  }
 }
