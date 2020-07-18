@@ -34,6 +34,10 @@
     border-radius: 0;
     border: none;
     text-overflow: ellipsis;
+
+    &--error {
+      border: 0.3rem solid $color-secondary;
+    }
   }
 
   &__option {
@@ -46,5 +50,10 @@
     margin: $space-xlarge $space-small;
     padding: $space-small;
     font-size: $font-size-regular;
+  }
+
+  &__error {
+    padding: $space-small;
+    color: $color-secondary;
   }
 }

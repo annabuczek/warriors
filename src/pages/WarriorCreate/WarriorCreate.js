@@ -31,11 +31,7 @@ const WarriorCreate = ({
     meta: { error, touched },
   }) => {
     return (
-      <div
-        className={`form__field ${
-          touched && error ? 'form__field--error' : ''
-        }`}
-      >
+      <div className="form__field">
         <label htmlFor={name} className="form__label">
           {label}
         </label>
@@ -43,10 +39,18 @@ const WarriorCreate = ({
           <textarea
             {...input}
             type={type}
-            className="form__textarea"
+            className={`form__textarea ${
+              touched && error ? 'form__textarea--error' : ''
+            }`}
           />
         ) : (
-          <input {...input} type={type} className="form__input" />
+          <input
+            {...input}
+            type={type}
+            className={`form__input ${
+              touched && error ? 'form__input--error' : ''
+            }`}
+          />
         )}
         {touched && error && (
           <div className="form__error">{error}</div>
@@ -115,9 +119,21 @@ const WarriorCreate = ({
   );
 };
 
+const validate = (formValues) => {
+  const errors = {};
+  if (!formValues.name) {
+    errors.name = 'Imię jest wymagane';
+  }
+  if (!formValues.description) {
+    errors.description = 'Opis jest wymagany';
+  }
+  return errors;
+};
+
 const form = reduxForm({
   form: 'createWarriorForm',
   initialValues: { skill: skills['1'].name },
+  validate,
 })(WarriorCreate);
 
 export default connect(({ warriors }) => ({ warriors }), {
