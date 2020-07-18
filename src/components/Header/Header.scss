@@ -44,6 +44,14 @@
       }
     }
   }
+
+  &__list-counter {
+    display: inline-block;
+    margin-left: 0.6rem;
+    padding: 0.1rem 0.6rem;
+    border: 0.1rem solid white;
+    border-radius: 50%;
+  }
 }
 
 .nav-mobile {

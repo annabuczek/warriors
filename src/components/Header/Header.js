@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Header.scss';
 import './Hamburger.scss';
 
-const NavigationLinks = ({ mobile, handleClick }) => {
+const NavigationLinks = ({ mobile, handleClick, listCount }) => {
   return (
     <div className="header__links">
       <Link
@@ -14,6 +15,7 @@ const NavigationLinks = ({ mobile, handleClick }) => {
         onClick={handleClick}
       >
         Moja Lista
+        <span className="header__list-counter">{listCount}</span>
       </Link>
       <Link
         to="/warriors/new"
@@ -26,7 +28,7 @@ const NavigationLinks = ({ mobile, handleClick }) => {
   );
 };
 
-const NavigationMobile = () => {
+const NavigationMobile = ({ listCount }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="nav-mobile">
@@ -46,32 +48,39 @@ const NavigationMobile = () => {
           open ? 'nav-mobile__drawer--open' : ''
         }`}
       >
-        <NavigationLinks mobile handleClick={() => setOpen(false)} />
+        <NavigationLinks
+          mobile
+          handleClick={() => setOpen(false)}
+          listCount={listCount}
+        />
       </div>
     </div>
   );
 };
 
-const NavigationDesktop = () => {
+const NavigationDesktop = ({ listCount }) => {
   return (
     <div className="nav-desktop">
-      <NavigationLinks />
+      <NavigationLinks listCount={listCount} />
     </div>
   );
 };
 
-const Header = () => {
+const Header = ({ myList }) => {
+  const getMyListCount = () => {
+    return Object.keys(myList).length;
+  };
   return (
     <section className="header">
       <nav className="header__navbar">
         <Link to="/" className="header__link">
           Strona Główna
         </Link>
-        <NavigationMobile />
-        <NavigationDesktop />
+        <NavigationMobile listCount={getMyListCount()} />
+        <NavigationDesktop listCount={getMyListCount()} />
       </nav>
     </section>
   );
 };
 
-export default Header;
+export default connect(({ myList }) => ({ myList }))(Header);
