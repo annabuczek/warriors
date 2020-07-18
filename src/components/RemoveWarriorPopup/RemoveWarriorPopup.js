@@ -17,7 +17,7 @@ const RemoveWarriorPopup = ({ removeWarrior }) => {
           </div>
           <div className="popup__actions">
             <button
-              className="warrior__button"
+              className="popup__button--confirm"
               onClick={() => {
                 removeWarrior();
               }}
@@ -25,7 +25,7 @@ const RemoveWarriorPopup = ({ removeWarrior }) => {
               Wyślij do rezerwy
             </button>
             <button
-              className="warrior__button"
+              className="popup__button--decline"
               onClick={() => {
                 close();
               }}

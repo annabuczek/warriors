@@ -1,3 +1,32 @@
-.popup__actions {
-  display: flex;
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.popup {
+  padding: $space-small;
+  background: $color-primary;
+
+  &__content {
+    text-align: center;
+    color: $color-text-white;
+    font-size: $font-size-regular;
+  }
+  &__actions {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: $space-medium;
+    @media (max-width: $bp-600) {
+      flex-direction: column;
+    }
+  }
+  &__button {
+    &--decline {
+      @include button($color-button-positive);
+    }
+    &--confirm {
+      @include button($color-button-negative);
+      @media (max-width: $bp-600) {
+        margin-bottom: $space-small;
+      }
+    }
+  }
 }

@@ -92,11 +92,11 @@
     margin: $space-small 0;
 
     &--add {
-      @include button(#7cd17c);
+      @include button($color-button-positive);
     }
 
     &--remove {
-      @include button(#eb8686);
+      @include button($color-button-negative);
     }
   }
 }
