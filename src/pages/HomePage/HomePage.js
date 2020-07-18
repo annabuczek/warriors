@@ -25,7 +25,7 @@ const HomePage = () => {
             offset={-80}
             duration={500}
           >
-            Poznaj ich blizej
+            Poznaj ich bliżej
           </Link>
         </div>
       </section>

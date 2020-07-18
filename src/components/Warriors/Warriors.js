@@ -25,14 +25,8 @@ const Warriors = ({
   };
   return (
     <section className="warriors">
-      <h2 className="warriors__title">Poznaj Wojowników</h2>
-      <Carousel
-        arrows
-        dots
-        centered
-        infinite
-        className="warriors__carousel"
-      >
+      <h2 className="warriors__title">Oto odważni śmiałkowie!</h2>
+      <Carousel arrows dots centered infinite>
         {warriors.map((warrior) => {
           return (
             <div className="warrior" key={warrior.id}>
@@ -41,11 +35,13 @@ const Warriors = ({
               </h3>
               <div className="warrior__content">
                 <div className="warrior__content--left">
-                  <img
-                    className="warrior__image"
-                    src={`https://source.unsplash.com/random/400x300?jedi?sig=${warrior.id}`}
-                    alt={`Zdjęcie ${warrior.name}`}
-                  ></img>
+                  <div className="warrior__image-wrapper">
+                    <img
+                      className="warrior__image"
+                      src={`https://source.unsplash.com/random/400x300?jedi?sig=${warrior.id}`}
+                      alt={`Zdjęcie ${warrior.name}`}
+                    ></img>
+                  </div>
                 </div>
                 <div className="warrior__content--right">
                   <div className="warrior__superpower">
@@ -64,7 +60,11 @@ const Warriors = ({
                       Wyświetl szczegóły
                     </Link>
                     <button
-                      className="warrior__button"
+                      className={`warrior__button ${
+                        warrior.id in myList
+                          ? 'warrior__button--remove'
+                          : 'warrior__button--add'
+                      }`}
                       onClick={() => toggleWarriorOnMyList(warrior)}
                     >
                       {warrior.id in myList

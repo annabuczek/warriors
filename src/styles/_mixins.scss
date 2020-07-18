@@ -8,8 +8,42 @@
   background-color: $color;
   font-weight: 700;
   transition: all 0.3s;
+  text-align: center;
 
   &:hover {
     background-color: darken($color, 10%);
+  }
+}
+
+@mixin pageTitle {
+  color: $color-text-white;
+  font-size: $font-size-h2;
+  padding: 0 $space-xlarge;
+}
+
+@mixin warriorName {
+  font-size: $font-size-h2;
+  font-family: $font-family-decorative;
+  color: $color-secondary;
+  text-align: center;
+  text-shadow: 0.1rem 0.1rem $color-primary;
+}
+
+@mixin superPowerTitle {
+  color: $color-text-white;
+  text-align: center;
+  font-size: $font-size-h3;
+  @media (max-width: $bp-600) {
+    font-size: $font-size-h3-phone;
+    margin-top: 0;
+  }
+}
+
+@mixin superPowerContent {
+  color: $color-primary;
+  text-align: center;
+  font-size: $font-size-regular;
+  @media (max-width: $bp-600) {
+    font-size: $font-size-h3-phone;
   }
 }

@@ -1,48 +1,101 @@
 @import '../variables';
+@import '../mixins';
 
 .warrior {
   padding: $space-small $space-xlarge;
   width: 100%;
+  @media (max-width: $bp-600) {
+    padding: 0$space-small;
+  }
 
   &__name {
-    color: $color-secondary;
-    text-align: center;
+    @include warriorName;
   }
 
   &__content {
     display: flex;
+    border: 0.5rem solid $color-background;
+    box-shadow: inset 0 0 0.2rem 0.2rem $color-secondary,
+      0 0 0.2rem 0.2rem $color-primary;
+    border-radius: 1rem;
+    margin-bottom: $space-small;
 
-    &--right {
+    @media (max-width: $bp-900) {
+      flex-direction: column;
+    }
+
+    &--left {
+      width: 50%;
       padding: $space-small;
-      width: 50%;
+      @media (max-width: $bp-900) {
+        width: 100%;
+      }
     }
 
     &--right {
       width: 50%;
+      padding: $space-small;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      @media (max-width: $bp-900) {
+        width: 100%;
+      }
     }
   }
 
-  &__superpower-title {
-    color: $color-text-white;
+  &__image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    object-fit: cover;
+    object-position: center;
+
+    &-wrapper {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 75%;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+      }
+    }
   }
 
-  &__superpower-content {
-    color: $color-primary;
+  &__superpower {
+    padding: $space-small 0;
+    &-title {
+      @include superPowerTitle;
+    }
+
+    &-content {
+      @include superPowerContent;
+    }
   }
 
   &__actions {
     display: flex;
     flex-direction: column;
-    padding: $space-small 0;
   }
 
   &__button {
-    width: 100%;
-    padding: $space-medium;
+    @include button($color-secondary);
     margin: $space-small 0;
-    background: white;
-    font-size: $font-size-regular;
-    color: #000;
-    text-align: center;
+
+    &--add {
+      @include button(#7cd17c);
+    }
+
+    &--remove {
+      @include button(#eb8686);
+    }
   }
 }

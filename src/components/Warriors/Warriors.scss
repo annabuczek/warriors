@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .warriors {
   max-width: $container-width;
@@ -7,10 +8,19 @@
   align-items: center;
   margin: 0 auto;
   padding: 0 $space-large 6rem $space-large;
+  @media (max-width: $bp-600) {
+    padding: $space-small;
+  }
 
   &__title {
-    color: $color-text-white;
+    @include pageTitle;
   }
+}
+
+.BrainhubCarousel__arrows {
+  background-color: $color-primary !important;
+  border-radius: 50%;
+  padding: $space-medium;
 }
 
 .BrainhubCarousel__dot {
@@ -18,7 +28,7 @@
 }
 
 .BrainhubCarousel__dot::before {
-  background-color: $color-secondary !important;
+  background-color: $color-primary !important;
   width: 1rem !important;
   height: 1rem !important;
 }
