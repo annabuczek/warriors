@@ -1,11 +1,8 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .warrior-show {
-  padding-top: 6rem;
-  width: $container-width;
-  max-width: 100%;
-  display: flex;
-  margin: 0 auto;
+  @include container;
 
   &__description {
     color: $color-text-white;

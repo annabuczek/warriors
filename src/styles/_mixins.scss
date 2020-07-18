@@ -1,5 +1,13 @@
 @import './variables';
 
+@mixin container {
+  padding-top: 6rem;
+  width: $container-width;
+  max-width: 100%;
+  display: flex;
+  margin: 0 auto;
+}
+
 @mixin button($color) {
   padding: $space-small $space-xlarge;
   font-size: $font-size-regular;

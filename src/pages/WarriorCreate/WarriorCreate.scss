@@ -2,13 +2,9 @@
 @import '../../styles/mixins';
 
 .warrior-create {
-  display: flex;
+  @include container;
   flex-direction: column;
   align-items: center;
-  width: $container-width;
-  max-width: 100%;
-  padding-top: 6rem;
-  margin: 0 auto;
 
   &__title {
     @include pageTitle;
