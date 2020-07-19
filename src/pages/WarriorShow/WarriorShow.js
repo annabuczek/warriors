@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import RemoveWarriorPopup from '../../components/RemoveWarriorPopup/RemoveWarriorPopup';
 import NotFound from '../NotFound/NotFound';
 import {
@@ -10,7 +11,7 @@ import { removeWarrior } from '../../redux/warriors/actions';
 import './WarriorShow.scss';
 import '../../styles/shared/Warrior.scss';
 
-const WarriorShow = ({
+export const WarriorShow = ({
   warriors,
   match,
   myList,
@@ -79,6 +80,14 @@ const WarriorShow = ({
       </div>
     </div>
   );
+};
+
+WarriorShow.protoTypes = {
+  myList: PropTypes.object.isRequired,
+  warriors: PropTypes.object.isRequired,
+  removeWarriorFromMyList: PropTypes.func.isRequired,
+  addWarriorToMyList: PropTypes.func.isRequired,
+  removeWarrior: PropTypes.func.isRequired,
 };
 
 export default connect(
