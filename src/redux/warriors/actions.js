@@ -2,6 +2,7 @@ import _ from 'lodash';
 import actionTypes from '../actionTypes';
 import axios from 'axios';
 import { setLocalStorageUpdateDate } from '../localStorage/actions';
+import { removeWarriorFromMyList } from '../myList/actions';
 import history from '../../history';
 
 export const fetchWarriorsRequested = () => {
@@ -52,6 +53,7 @@ export const removeWarrior = (warrior) => (dispatch) => {
     type: actionTypes.REMOVE_WARRIOR,
     warrior,
   });
+  dispatch(removeWarriorFromMyList(warrior));
   history.push('/');
 };
 

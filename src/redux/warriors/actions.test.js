@@ -116,16 +116,23 @@ describe('warriors actions', () => {
   });
 
   describe('removeWarrior', () => {
-    it('creates REMOVE_WARRIOR action', () => {
+    it('creates REMOVE_WARRIOR and REMOVE_WARRIOR_FROM_MY_LIST action', () => {
       const warrior = { id: 1, name: 'Wojowniczka Ania' };
       const expectedActions = [
         {
           type: actionTypes.REMOVE_WARRIOR,
           warrior,
         },
+        {
+          type: actionTypes.REMOVE_WARRIOR_FROM_MY_LIST,
+          warrior,
+        },
       ];
 
-      const store = mockStore({ warriors: { 1: warrior } });
+      const store = mockStore({
+        warriors: { 1: warrior },
+        myList: { 1: warrior },
+      });
       store.dispatch(removeWarrior(warrior));
 
       expect(store.getActions()).toEqual(expectedActions);
