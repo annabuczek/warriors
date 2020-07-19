@@ -28,7 +28,7 @@ const NavigationLinks = ({ mobile, handleClick, listCount }) => {
   );
 };
 
-const NavigationMobile = ({ listCount }) => {
+export const NavigationMobile = ({ listCount }) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="nav-mobile">
@@ -58,7 +58,7 @@ const NavigationMobile = ({ listCount }) => {
   );
 };
 
-const NavigationDesktop = ({ listCount }) => {
+export const NavigationDesktop = ({ listCount }) => {
   return (
     <div className="nav-desktop">
       <NavigationLinks listCount={listCount} />
@@ -66,7 +66,7 @@ const NavigationDesktop = ({ listCount }) => {
   );
 };
 
-const Header = ({ myList }) => {
+export const Header = ({ myList }) => {
   const getMyListCount = () => {
     return Object.keys(myList).length;
   };
