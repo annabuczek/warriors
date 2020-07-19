@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from '@brainhubeu/react-carousel';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import {
   addWarriorToMyList,
   removeWarriorFromMyList,
@@ -103,6 +104,15 @@ export const Warriors = ({
       {renderContent()}
     </section>
   );
+};
+
+Warriors.protoTypes = {
+  warriors: PropTypes.object.isRequired,
+  error: PropTypes.string.isRequired,
+  fetching: PropTypes.bool.isRequired,
+  myList: PropTypes.object.isRequired,
+  addWarriorToMyList: PropTypes.func.isRequired,
+  removeWarriorFromMyList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = ({ warriors, myList }) => {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import './Header.scss';
 import './Hamburger.scss';
 
@@ -26,6 +27,12 @@ const NavigationLinks = ({ mobile, handleClick, listCount }) => {
       </Link>
     </div>
   );
+};
+
+NavigationLinks.protoTypes = {
+  listCount: PropTypes.number.isRequired,
+  mobile: PropTypes.bool,
+  handleClick: PropTypes.func,
 };
 
 export const NavigationMobile = ({ listCount }) => {
@@ -58,12 +65,20 @@ export const NavigationMobile = ({ listCount }) => {
   );
 };
 
+NavigationMobile.protoTypes = {
+  listCount: PropTypes.number.isRequired,
+};
+
 export const NavigationDesktop = ({ listCount }) => {
   return (
     <div className="nav-desktop">
       <NavigationLinks listCount={listCount} />
     </div>
   );
+};
+
+NavigationDesktop.protoTypes = {
+  listCount: PropTypes.number.isRequired,
 };
 
 export const Header = ({ myList }) => {
@@ -81,6 +96,10 @@ export const Header = ({ myList }) => {
       </nav>
     </section>
   );
+};
+
+Header.protoTypes = {
+  myList: PropTypes.object.isRequired,
 };
 
 export default connect(({ myList }) => ({ myList }))(Header);

@@ -1,5 +1,6 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
+import PropTypes from 'prop-types';
 import './RemoveWarriorPopup.scss';
 import '../../styles/shared/Warrior.scss';
 
@@ -37,6 +38,10 @@ const RemoveWarriorPopup = ({ removeWarrior }) => {
       )}
     </Popup>
   );
+};
+
+RemoveWarriorPopup.protoTypes = {
+  removeWarrior: PropTypes.func.isRequired,
 };
 
 export default RemoveWarriorPopup;
