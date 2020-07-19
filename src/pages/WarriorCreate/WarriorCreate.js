@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import PropTypes from 'prop-types';
 import { addWarrior } from '../../redux/warriors/actions';
 import skills from '../../helpers/skills';
 import './WarriorCreate.scss';
@@ -132,6 +133,10 @@ const validate = (formValues) => {
     errors.description = 'Opis jest wymagany';
   }
   return errors;
+};
+
+WarriorCreate.protoTypes = {
+  warriors: PropTypes.object.isRequired,
 };
 
 const form = reduxForm({
