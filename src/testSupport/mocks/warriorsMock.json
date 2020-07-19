@@ -1,0 +1,20 @@
+{
+  "1": {
+    "id": 1,
+    "name": "Wojownik Stefan",
+    "description": "Aenean eu pretium dui, sit amet posuere tortor.",
+    "skill": "Zachowuje spokój i skupienie w kazdej sytuacji"
+  },
+  "2": {
+    "id": 2,
+    "name": "Wojowniczka Maria",
+    "description": "Vivamus vulputate velit sit amet dignissim porta. Quisque rhoncus lobortis turpis.",
+    "skill": "Wyczuwa zapach z odległości 500m"
+  },
+  "3": {
+    "id": 3,
+    "name": "Wojowniczka Kasia",
+    "description": "Morbi eleifend ligula sit amet egestas commodo.",
+    "skill": "Zamienia rzeczy w kamień za dotknięciem ręki"
+  }
+}
