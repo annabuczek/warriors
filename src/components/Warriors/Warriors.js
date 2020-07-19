@@ -12,9 +12,11 @@ import '../../styles/shared/Warrior.scss';
 
 const Warriors = ({
   warriors,
+  error,
+  fetching,
+  myList,
   addWarriorToMyList,
   removeWarriorFromMyList,
-  myList,
 }) => {
   const toggleWarriorOnMyList = (warrior) => {
     if (warrior.id in myList) {
@@ -23,9 +25,9 @@ const Warriors = ({
       addWarriorToMyList(warrior);
     }
   };
-  return (
-    <section className="warriors">
-      <h2 className="warriors__title">Oto odważni śmiałkowie!</h2>
+
+  const renderCarousel = () => {
+    return (
       <Carousel arrows dots centered infinite>
         {warriors.map((warrior) => {
           return (
@@ -78,12 +80,38 @@ const Warriors = ({
           );
         })}
       </Carousel>
+    );
+  };
+
+  const renderContent = () => {
+    if (fetching) {
+      return <div className="warriors__loading">Loading...</div>;
+    } else if (error) {
+      return (
+        <div className="warriors__error">
+          Coś poszło nie tak, spróbuj ponownie za chwilę.
+        </div>
+      );
+    } else {
+      return renderCarousel();
+    }
+  };
+
+  return (
+    <section className="warriors">
+      <h2 className="warriors__title">Oto odważni śmiałkowie!</h2>
+      {renderContent()}
     </section>
   );
 };
 
 const mapStateToProps = ({ warriors, myList }) => {
-  return { warriors: Object.values(warriors.data), myList };
+  return {
+    warriors: Object.values(warriors.data),
+    error: warriors.error,
+    fetching: warriors.fetching,
+    myList,
+  };
 };
 
 export default connect(mapStateToProps, {

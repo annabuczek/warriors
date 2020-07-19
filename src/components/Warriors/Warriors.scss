@@ -13,6 +13,12 @@
   &__title {
     @include pageTitle;
   }
+
+  &__loading,
+  &__error {
+    color: $color-text-white;
+    font-weight: 700;
+  }
 }
 
 .BrainhubCarousel__arrows {
