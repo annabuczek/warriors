@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import RemoveWarriorPopup from '../../components/RemoveWarriorPopup/RemoveWarriorPopup';
+import NotFound from '../NotFound/NotFound';
 import {
   addWarriorToMyList,
   removeWarriorFromMyList,
@@ -18,6 +19,9 @@ const WarriorShow = ({
   removeWarrior,
 }) => {
   const warrior = warriors.data[match.params.id];
+  if (!warrior) {
+    return <NotFound />;
+  }
 
   const toggleWarriorOnMyList = (warrior) => {
     if (warrior.id in myList) {
@@ -26,6 +30,7 @@ const WarriorShow = ({
       addWarriorToMyList(warrior);
     }
   };
+
   return (
     <div className="warrior-show">
       <div className="warrior">
