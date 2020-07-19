@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { addWarrior } from '../../redux/warriors/actions';
 import skills from '../../helpers/skills';
@@ -118,6 +119,9 @@ class WarriorCreate extends React.Component {
           >
             Stwórz Wojownika
           </button>
+          <Link to={'/'} className="form__cancel">
+            Anuluj
+          </Link>
         </form>
       </div>
     );

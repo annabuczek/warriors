@@ -36,6 +36,7 @@
     width: 100%;
     padding: $space-small $space-xlarge $space-small $space-small;
     font-size: $font-size-regular;
+    font-family: $font-family-regular;
     border-radius: 0;
     border: none;
     text-overflow: ellipsis;
@@ -52,8 +53,13 @@
   }
 
   &__submit {
-    @include button($color-secondary);
+    @include button($color-positive);
     margin: $space-xlarge $space-small;
+  }
+
+  &__cancel {
+    @include button($color-secondary);
+    margin: 0 $space-small $space-xlarge $space-small;
   }
 
   &__error {

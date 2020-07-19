@@ -4,11 +4,14 @@ import { Provider } from 'react-redux';
 import { store } from '../../redux/store';
 import { simulateChange } from '../../testSupport/support';
 import WarriorCreate from './WarriorCreate';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('WarriorCreate', () => {
   const wrapper = mount(
     <Provider store={store}>
-      <WarriorCreate />
+      <MemoryRouter initialEntries={['/warriors/create']}>
+        <WarriorCreate />
+      </MemoryRouter>
     </Provider>,
   );
   it('renders form', () => {
@@ -33,5 +36,9 @@ describe('WarriorCreate', () => {
     simulateChange(wrapper.find('.form__select'), 'test');
 
     expect(wrapper.find('.form__select').prop('value')).toBe('test');
+  });
+
+  it('has cancel button that redirects to main page', () => {
+    expect(wrapper.find('Link').at(0).prop('to')).toBe('/');
   });
 });
