@@ -78,7 +78,7 @@ describe('warriors actions', () => {
     it('creates actions when fetch succeeded', () => {
       mockAdapter
         .onGet(
-          'https://run.mocky.io/v3/9fbe35dc-2333-454d-a3a3-2951ef978db1/',
+          'https://run.mocky.io/v3/b98b52b2-cf69-4104-9c47-b7fa032efa5c',
         )
         .reply(200, warriorsApiMock);
 
@@ -97,7 +97,7 @@ describe('warriors actions', () => {
     it('creates actions when fetch failed', () => {
       mockAdapter
         .onGet(
-          'https://run.mocky.io/v3/9fbe35dc-2333-454d-a3a3-2951ef978db1/',
+          'https://run.mocky.io/v3/b98b52b2-cf69-4104-9c47-b7fa032efa5c',
         )
         .reply(404, {
           message: 'Request failed with status code 404',
