@@ -1,0 +1,26 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.not-found {
+  @include container;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &__title {
+    @include pageTitle;
+    font-size: 8rem;
+    margin-bottom: $space-xlarge;
+  }
+
+  &__message {
+    color: $color-text-white;
+    margin-top: 0;
+    font-size: $font-size-h3;
+  }
+
+  &__link {
+    @include button($color-secondary);
+  }
+}

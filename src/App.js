@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Switch, Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import { fetchWarriors } from './redux/warriors/actions';
@@ -7,6 +7,7 @@ import history from './history';
 import Header from './components/Header/Header';
 import HomePage from './pages/HomePage/HomePage';
 import MyList from './pages/MyList/MyList';
+import NotFound from './pages/NotFound/NotFound';
 import WarriorCreate from './pages/WarriorCreate/WarriorCreate';
 import WarriorShow from './pages/WarriorShow/WarriorShow';
 
@@ -24,8 +25,8 @@ const App = ({ fetchWarriors, localStorage }) => {
   return (
     <div className="App">
       <Router history={history}>
-        <div>
-          <Header />
+        <Header />
+        <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/mylist" exact component={MyList} />
           <Route
@@ -38,7 +39,8 @@ const App = ({ fetchWarriors, localStorage }) => {
             exact
             component={WarriorShow}
           />
-        </div>
+          <Route component={NotFound} />
+        </Switch>
       </Router>
     </div>
   );
