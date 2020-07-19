@@ -8,6 +8,9 @@ import './WarriorCreate.scss';
 class WarriorCreate extends React.Component {
   generateNewWarriorId = () => {
     const warriorsKeys = Object.keys(this.props.warriors.data);
+    if (warriorsKeys.length === 0) {
+      return 1;
+    }
     const warriorsLastId = warriorsKeys[warriorsKeys.length - 1];
     return parseInt(warriorsLastId) + 1;
   };
