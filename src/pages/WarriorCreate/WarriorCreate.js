@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import BackButton from '../../components/BackButton/BackButton';
 import { addWarrior } from '../../redux/warriors/actions';
 import skills from '../../helpers/skills';
 import './WarriorCreate.scss';
@@ -90,6 +91,7 @@ class WarriorCreate extends React.Component {
     const { handleSubmit, submitting } = this.props;
     return (
       <div className="warrior-create">
+        <BackButton />
         <h1 className="warrior-create__title">Dodaj Wojownika</h1>
         <form className="form" onSubmit={handleSubmit(this.onSubmit)}>
           <Field

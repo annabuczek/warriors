@@ -2,12 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import BackButton from '../../components/BackButton/BackButton';
 import { removeWarriorFromMyList } from '../../redux/myList/actions';
 import './MyList.scss';
 
 export const MyList = ({ myList, removeWarriorFromMyList }) => {
   return (
     <div className="my-list">
+      <BackButton />
       <h1 className="my-list__title">Twoi wojownicy</h1>
       <div className="mylist__content">
         {Object.values(myList).map((warrior) => {

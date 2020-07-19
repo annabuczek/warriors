@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import RemoveWarriorPopup from '../../components/RemoveWarriorPopup/RemoveWarriorPopup';
 import NotFound from '../NotFound/NotFound';
+import BackButton from '../../components/BackButton/BackButton';
 import {
   addWarriorToMyList,
   removeWarriorFromMyList,
@@ -34,6 +35,7 @@ export const WarriorShow = ({
 
   return (
     <div className="warrior-show">
+      <BackButton />
       <div className="warrior">
         <h3 className="warrior__name">{warrior.name}</h3>
         <div className="warrior__content">

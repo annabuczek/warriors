@@ -1,0 +1,33 @@
+@import '../../styles/variables';
+
+.back-button {
+  position: absolute;
+  top: 8rem;
+  left: 5rem;
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  background-color: $color-primary;
+  color: $color-text-white;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: darken($color-primary, 10%);
+  }
+
+  @media (max-width: $bp-600) {
+    left: 1.3rem;
+    top: 7.2rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  &__icon {
+    height: 3rem;
+    width: 3rem;
+
+    @media (max-width: $bp-600) {
+      width: 1.3rem;
+      height: 2.5rem;
+    }
+  }
+}
