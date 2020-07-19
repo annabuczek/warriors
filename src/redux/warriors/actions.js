@@ -62,5 +62,5 @@ export const addWarrior = (warrior) => (dispatch) => {
     type: actionTypes.ADD_WARRIOR,
     warrior,
   });
-  history.push('/');
+  history.push(`/warriors/show/${warrior.id}`);
 };
