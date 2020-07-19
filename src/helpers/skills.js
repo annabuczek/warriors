@@ -10,7 +10,7 @@ export default {
   },
   3: {
     id: '3',
-    name: 'Ożywienie i wydłużanie własnych włosów',
+    name: 'Ożywianie i wydłużanie własnych włosów',
   },
   4: {
     id: '4',
@@ -27,7 +27,7 @@ export default {
   },
   7: {
     id: '7',
-    name: 'Umiejętność oddychania przez wodę',
+    name: 'Umiejętność oddychania pod wodą',
   },
   8: {
     id: '8',
