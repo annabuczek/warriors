@@ -1,0 +1,29 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.nav-mobile {
+  display: flex;
+  @media (min-width: $bp-601) {
+    display: none;
+  }
+
+  &__drawer {
+    position: fixed;
+    width: 100vw;
+    top: -10rem;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    pointer-events: none;
+    background-color: #00000070;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    padding: 0 $space-medium $space-large $space-medium;
+
+    &--open {
+      top: 5.72rem;
+      pointer-events: unset;
+    }
+  }
+}

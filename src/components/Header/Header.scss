@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 
 .header {
   position: fixed;
@@ -14,76 +15,7 @@
     justify-content: space-between;
   }
 
-  &__links {
-    display: flex;
-    @media (max-width: $bp-600) {
-      flex-direction: column;
-    }
-  }
-
   &__link {
-    color: $color-text-white;
-    font-size: $font-size-regular;
-    padding: 0 $space-small;
-    font-weight: 700;
-    transition: all 0.3s;
-
-    &:hover {
-      color: $color-secondary;
-    }
-
-    &--mobile {
-      margin-bottom: $space-large;
-    }
-
-    &--add {
-      color: $color-positive;
-
-      &:hover {
-        color: darken($color-positive, 20%);
-      }
-    }
-  }
-
-  &__list-counter {
-    display: inline-block;
-    margin-left: 0.6rem;
-    padding: 0.1rem 0.6rem;
-    border: 0.1rem solid white;
-    border-radius: 50%;
-  }
-}
-
-.nav-mobile {
-  display: flex;
-  @media (min-width: $bp-601) {
-    display: none;
-  }
-
-  &__drawer {
-    position: fixed;
-    width: 100vw;
-    top: -10rem;
-    right: 0;
-    left: 0;
-    z-index: 2;
-    pointer-events: none;
-    background-color: #00000070;
-    transition: all 0.3s;
-    display: flex;
-    flex-direction: column;
-    padding: 0 $space-medium $space-large $space-medium;
-
-    &--open {
-      top: 5.72rem;
-      pointer-events: unset;
-    }
-  }
-}
-
-.nav-desktop {
-  display: flex;
-  @media (max-width: $bp-600) {
-    display: none;
+    @include navigationLink;
   }
 }

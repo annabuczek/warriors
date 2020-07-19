@@ -1,0 +1,32 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.navigation-links {
+  display: flex;
+  @media (max-width: $bp-600) {
+    flex-direction: column;
+  }
+
+  &__link {
+    @include navigationLink;
+
+    &--mobile {
+      margin-bottom: $space-large;
+    }
+    &--add {
+      color: $color-positive;
+
+      &:hover {
+        color: darken($color-positive, 20%);
+      }
+    }
+  }
+
+  &__list-counter {
+    display: inline-block;
+    margin-left: 0.6rem;
+    padding: 0.1rem 0.6rem;
+    border: 0.1rem solid white;
+    border-radius: 50%;
+  }
+}

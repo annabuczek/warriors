@@ -1,0 +1,9 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.nav-desktop {
+  display: flex;
+  @media (max-width: $bp-600) {
+    display: none;
+  }
+}
