@@ -1,24 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-  addWarriorToMyList,
-  removeWarriorFromMyList,
-} from '../../redux/myList/actions';
+import PropTypes from 'prop-types';
+import { removeWarriorFromMyList } from '../../redux/myList/actions';
 import './MyList.scss';
 
-const MyList = ({
-  myList,
-  addWarriorToMyList,
-  removeWarriorFromMyList,
-}) => {
-  const toggleWarriorOnMyList = (warrior) => {
-    if (warrior.id in myList) {
-      removeWarriorFromMyList(warrior);
-    } else {
-      addWarriorToMyList(warrior);
-    }
-  };
+export const MyList = ({ myList, removeWarriorFromMyList }) => {
   return (
     <div className="my-list">
       <h1 className="my-list__title">Twoi wojownicy</h1>
@@ -56,16 +43,10 @@ const MyList = ({
                       Wyświetl szczegóły
                     </Link>
                     <button
-                      className={`warrior__button ${
-                        warrior.id in myList
-                          ? 'warrior__button--remove'
-                          : 'warrior__button--add'
-                      }`}
-                      onClick={() => toggleWarriorOnMyList(warrior)}
+                      className="warrior__button warrior__button--remove"
+                      onClick={() => removeWarriorFromMyList(warrior)}
                     >
-                      {warrior.id in myList
-                        ? `Usuń z mojej listy`
-                        : 'Dodaj do mojej listy'}
+                      Usuń z mojej listy
                     </button>
                   </div>
                 </div>
@@ -78,7 +59,11 @@ const MyList = ({
   );
 };
 
+MyList.protoTypes = {
+  myList: PropTypes.object.isRequired,
+  removeWarriorFromMyList: PropTypes.func.isRequired,
+};
+
 export default connect(({ myList }) => ({ myList }), {
-  addWarriorToMyList,
   removeWarriorFromMyList,
 })(MyList);
