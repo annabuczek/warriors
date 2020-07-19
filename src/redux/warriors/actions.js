@@ -37,7 +37,7 @@ export const fetchWarriors = () => async (dispatch, getState) => {
     const {
       data: { warriors },
     } = await axios.get(
-      'https://run.mocky.io/v3/9fbe35dc-2333-454d-a3a3-2951ef978db1/',
+      'https://run.mocky.io/v3/b98b52b2-cf69-4104-9c47-b7fa032efa5c',
     );
     dispatch(
       fetchWarriorsSucceeded(getState().warriors.data, warriors),
